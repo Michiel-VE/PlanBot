@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
 const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
-const prefix = '!p';
+const prefix = '!!';
 
 var events = [];
 var errormsg = 'This is not a complete command check !help to see all commands';
