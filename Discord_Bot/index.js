@@ -5,7 +5,6 @@ const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
 const prefix = '!!';
 
 var events = [];
-var errormsg = 'This is not a complete command check !help to see all commands';
 
 Bot.on('ready', () =>{
     console.log('Bot online');
@@ -21,10 +20,11 @@ Bot.on('message', message =>{
         case 'help':
             const help = new Discord.MessageEmbed()
             .setTitle('Help').setDescription('Here you will find all commands:')
-            .addField('!hhelp', 'Show help', true)
-            .addField('!hlink', 'Link to my page', true)
-            .addField('!hnew', 'Add a new event do !new date eventname')
-            .addField('!hshow events', 'this commands shows you all planned events', true)
+            .addField('!!help', 'Show help', true)
+            .addField('!!link', 'Link to my page', true)
+            .addField('!!new', 'Add a new event do !!new date eventname')
+            .addField('!!show events', 'this commands shows you all planned events', true)
+            .addField('!!remove', 'remove an event do !!remove date eventname', true)
             .setColor(0x21e114)
             .setThumbnail(Bot.user.avatarURL());
             message.channel.send(help);
@@ -36,7 +36,7 @@ Bot.on('message', message =>{
 
         case 'new':
             var datum = parseInt(args[1]);
-            if(!args[1] || !args[2] || isNaN(datum)) return message.reply(errormsg)
+            if(!args[1] || !args[2] || isNaN(datum)) return message.reply(':x: This is not a complete command check !!help to see all commands')
             
             
             events.push({
@@ -61,9 +61,13 @@ Bot.on('message', message =>{
             break;
 
         case 'remove':
-            if(!args[1]) return message.reply(errormsg)
-            events.unshift(args[1]);
-        
+            if(!args[1] || !args[2]) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            if(events.date === args[1] && events.event === args[2]){
+                events.splice(args[1], 1);
+                message.channel.send('Event: ' + args[2] + ' on ' + args[1] + ' was deleted')
+            }else{
+                message.channel.send(':x: __**Something went wrong! Could not delete event**__')
+            }
             break;
     }
 })
