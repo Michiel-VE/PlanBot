@@ -5,6 +5,7 @@ const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
 const prefix = '!p';
 
 var events = [];
+var errormsg = 'This is not a complete command check !help to see all commands';
 
 Bot.on('ready', () =>{
     console.log('Bot online');
@@ -35,7 +36,7 @@ Bot.on('message', message =>{
 
         case 'new':
             var datum = parseInt(args[1]);
-            if(!args[1] || !args[2] || isNaN(datum)) return message.reply('This is not a complete command check !help to see all commands')
+            if(!args[1] || !args[2] || isNaN(datum)) return message.reply(errormsg)
             
             
             events.push({
@@ -47,6 +48,7 @@ Bot.on('message', message =>{
             for(var i = 0; i < events.length; i++){
                 console.log(events[i]);
             } 
+        
             break;
 
         case 'show':
@@ -58,8 +60,11 @@ Bot.on('message', message =>{
             }
             break;
 
-        case 'test':
-            message.channel.send('@here yellow')
+        case 'remove':
+            if(!args[1]) return message.reply(errormsg)
+            events.unshift(args[1]);
+        
+            break;
     }
 })
 
