@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
 const config = require('./config.json');
-const prefix = '!p';
+const prefix = '';
 
 var events = [];
 
