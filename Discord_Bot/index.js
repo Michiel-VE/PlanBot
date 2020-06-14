@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
-const config = require('./config.json');
+const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
 const prefix = '!p';
 
 var events = [];
@@ -63,4 +63,4 @@ Bot.on('message', message =>{
     }
 })
 
-Bot.login(config.token);
+Bot.login(token);
