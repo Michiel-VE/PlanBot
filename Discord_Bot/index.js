@@ -55,6 +55,7 @@ Bot.on('message', message =>{
                     message.channel.send('Your plans on ' + events[i].date + ' are ' + events[i].event)
                 }   
             }
+            break;
 
         case 'test':
             message.channel.send('@here yellow')
