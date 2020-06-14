@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
-const token = 'NzIxMzQyNjk3MTA5MDYxNjUz.XuTIyQ.mQrIJ6EXRBbHLKufQ0ufwgN0Rkk';
-const prefix = '!h';
+const config = require('./config.json');
+const prefix = '!p';
 
 var events = [];
 
 Bot.on('ready', () =>{
     console.log('Bot online');
-    Bot.user.setStatus('Planning stuff')
+    Bot.user.setActivity('Planning stuff')
 })
 
 Bot.on('message', message =>{
@@ -63,4 +63,4 @@ Bot.on('message', message =>{
     }
 })
 
-Bot.login(token);
+Bot.login(config.token);
