@@ -2,12 +2,13 @@ const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
 const token = 'NzIxMzQyNjk3MTA5MDYxNjUz.XuTIyQ.mQrIJ6EXRBbHLKufQ0ufwgN0Rkk';
-const prefix = '!';
+const prefix = '!h';
 
 var events = [];
 
 Bot.on('ready', () =>{
     console.log('Bot online');
+    Bot.user.setStatus('Planning stuff')
 })
 
 Bot.on('message', message =>{
@@ -19,12 +20,12 @@ Bot.on('message', message =>{
         case 'help':
             const help = new Discord.MessageEmbed()
             .setTitle('Help').setDescription('Here you will find all commands:')
-            .addField('!help', 'Show help', true)
-            .addField('!link', 'Link to my page', true)
-            .addField('!new', 'Add a new event do !new date eventname', true)
-            .addField('!show events', 'this commands shows you all planned events', true)
+            .addField('!hhelp', 'Show help', true)
+            .addField('!hlink', 'Link to my page', true)
+            .addField('!hnew', 'Add a new event do !new date eventname')
+            .addField('!hshow events', 'this commands shows you all planned events', true)
             .setColor(0x21e114)
-            .setThumbnail(message.author.avatarURL());
+            .setThumbnail(Bot.user.avatarURL());
             message.channel.send(help);
             break;
             
