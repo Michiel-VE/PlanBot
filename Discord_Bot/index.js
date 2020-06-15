@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
-const config = require('config.json');
+const config = require('../config.json');
 
-const token = config.tokenLogin;
-const prefix = config.prefix;
+const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XufA9Q.SqIg374qsyJ8gkW8ZLnmIg3oMeo";
+const prefix = "!!";
 
 var events = [];
 var eventname = '';
