@@ -6,6 +6,7 @@ const prefix = '!!';
 
 var events = [];
 var eventname = '';
+var id = events.length + 1;
 
 Bot.on('ready', () =>{
     console.log('Bot online');
@@ -55,29 +56,35 @@ Bot.on('message', message =>{
             
             
             events.push({
+                id: id,
                 date: args[1],
                 event: eventname
             });
 
-            message.channel.send('Event: ' + eventname + ' is made on ' + args[1]);
+            
+
+            message.channel.send('Event: ' + eventname + ' with id ' + id + ' is made on ' + args[1]);
             for(var i = 0; i < events.length; i++){
                 console.log(events[i]);
+                console.log(message.author.username + ' ' + message.guild.name)
             }
             eventname = '';
+            id = events.length + 1;
             break;
 
         case 'show':
             if(args[1] === 'events'){   
                 console.log(events);
+                events.sort();
                 for(var i = 0; i < events.length; i++){
-                    message.channel.send('Your plans on ' + events[i].date + ' are ' + events[i].event)
+                    message.channel.send(events[i].id +  ') Your plans on ' + events[i].date + ' are ' + events[i].event)
                 }   
             }
             break;
 
         case 'remove':
             var datumremove = parseInt(args[1]);
-            if(!args[1] || !args[2] || isNaN(datumremove)) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            if(!args[1] || isNaN(datumremove)) return message.reply(':x: This is not a complete command check !!help to see all commands')
             var eventnamearr = [args[2], args[3], args[4], args[5], args[6]];
 
             if(args[3] === undefined){
@@ -93,10 +100,17 @@ Bot.on('message', message =>{
                 eventname = args[2] + ' ' + args[3]+ ' ' + args[4] +  ' ' + args[5];
             }
 
-            if(!events.includes(args[1]) || !events.includes(eventname)) return message.reply(':x: Event not in list'), console.log(datumremove, eventname)
-            events.splice(args[1],1);
-            message.channel.send('Event: ' + eventname + ' on ' + args[1] + ' was deleted :white_check_mark:')
+            if(!args[1]) return message.reply(':x: Event not in list'), console.log(datumremove, eventname)
+            var idint = parseInt(args[1]);
+            if(idint <= events.length){
+                events.splice(events[args[1]], 1);
+                message.channel.send('Event: ' + eventname + ' on ' + args[1] + ' was deleted :white_check_mark:');
+            }else{
+                message.reply('No valid ID');
+            }
+            
             eventname = '';
+            id = 1;
             break;
     }
 })
