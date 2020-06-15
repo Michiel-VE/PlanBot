@@ -5,6 +5,7 @@ const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
 const prefix = '!!';
 
 var events = [];
+var eventname = '';
 
 Bot.on('ready', () =>{
     console.log('Bot online');
@@ -35,20 +36,34 @@ Bot.on('message', message =>{
             break;
 
         case 'new':
-            var datum = parseInt(args[1]);
-            if(!args[1] || !args[2] || isNaN(datum)) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            var datumnew = parseInt(args[1]);
+            if(!args[1] || !args[2] || isNaN(datumnew)) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            var eventnamearr = [args[2], args[3], args[4], args[5], args[6]];
+
+            if(args[3] === undefined){
+                eventname = args[2];
+            }
+            else if(args[4] === undefined){
+                eventname = args[2] + ' ' + args[3];
+            }
+            else if(args[5] === undefined){
+                eventname =  args[2] + ' ' + args[3] + ' ' + args[4];
+            }
+            else if(args[6] === undefined){
+                eventname =  args[2] + ' ' + args[3] + ' ' + args[4] +  ' ' + args[5];
+            }
             
             
             events.push({
                 date: args[1],
-                event: args[2]
+                event: eventname
             });
 
-            message.channel.send('Event ' + args[2] + ' is made on ' + args[1]);
+            message.channel.send('Event: ' + eventname + ' is made on ' + args[1]);
             for(var i = 0; i < events.length; i++){
                 console.log(events[i]);
-            } 
-        
+            }
+            eventname = '';
             break;
 
         case 'show':
@@ -61,9 +76,27 @@ Bot.on('message', message =>{
             break;
 
         case 'remove':
-            if(!args[1] || !args[2]) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            var datumremove = parseInt(args[1]);
+            if(!args[1] || !args[2] || isNaN(datumremove)) return message.reply(':x: This is not a complete command check !!help to see all commands')
+            var eventnamearr = [args[2], args[3], args[4], args[5], args[6]];
+
+            if(args[3] === undefined){
+                eventname = args[2];
+            }
+            else if(args[4] === undefined){
+                eventname = args[2] + ' ' + args[3];
+            }
+            else if(args[5] === undefined){
+                eventname = args[2] + ' ' + args[3]+ ' ' + args[4];
+            }
+            else if(args[6] === undefined){
+                eventname = args[2] + ' ' + args[3]+ ' ' + args[4] +  ' ' + args[5];
+            }
+
+            if(!events.includes(args[1]) || !events.includes(eventname)) return message.reply(':x: Event not in list'), console.log(datumremove, eventname)
             events.splice(args[1],1);
-            message.channel.send('Event: ' + args[2] + ' on ' + args[1] + ' was deleted')
+            message.channel.send('Event: ' + eventname + ' on ' + args[1] + ' was deleted :white_check_mark:')
+            eventname = '';
             break;
     }
 })
