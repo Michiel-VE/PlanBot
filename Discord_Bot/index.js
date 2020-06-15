@@ -1,8 +1,9 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
+const config = require('../config.json');
 
-const token = "NzIxMzQyNjk3MTA5MDYxNjUz.XuYbeA.E9NvQJihtjc7vzmML8N-3v9bDUM";
-const prefix = '!!';
+const token = config.tokenLogin;
+const prefix = config.prefix;
 
 var events = [];
 var eventname = '';
@@ -17,6 +18,7 @@ Bot.on('message', message =>{
 
     var args = message.content.substring(prefix.length).split(" ");
     
+    if(message.content.startsWith(prefix)){
 
     switch(args[0]){
         case 'help':
@@ -113,6 +115,7 @@ Bot.on('message', message =>{
             id = 1;
             break;
     }
+}
 })
 
 Bot.login(token);
