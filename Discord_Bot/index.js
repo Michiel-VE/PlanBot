@@ -62,12 +62,8 @@ Bot.on('message', message =>{
 
         case 'remove':
             if(!args[1] || !args[2]) return message.reply(':x: This is not a complete command check !!help to see all commands')
-            if(events.date === args[1] && events.event === args[2]){
-                events.splice(args[1], 1);
-                message.channel.send('Event: ' + args[2] + ' on ' + args[1] + ' was deleted')
-            }else{
-                message.channel.send(':x: __**Something went wrong! Could not delete event**__')
-            }
+            events.splice(args[1],1);
+            message.channel.send('Event: ' + args[2] + ' on ' + args[1] + ' was deleted')
             break;
     }
 })
