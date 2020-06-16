@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
 const token = process.env.tokenLogin;
-const prefix = "!!";
+const prefix = process.env.prefixKey;
 
 var events = [];
 var eventname = '';
