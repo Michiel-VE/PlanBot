@@ -1,0 +1,22 @@
+{
+  "name": "planbot",
+  "version": "1.0.0",
+  "description": "First bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michiel-VE/PlanBot.git"
+  },
+  "author": "Ikke123HH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Michiel-VE/PlanBot/issues"
+  },
+  "homepage": "https://github.com/Michiel-VE/PlanBot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
