@@ -78,7 +78,7 @@ Bot.on('message', message =>{
                 console.log(events);
                 events.sort();
                 for(var i = 0; i < events.length; i++){
-                    message.channel.send(events[i].id +  ') Your plans on ' + events[i].date + ' are ' + events[i].event)
+                    message.channel.send((i + 1) +  ') Your plans on ' + events[i].date + ' are ' + events[i].event)
                 }   
             }
             break;
