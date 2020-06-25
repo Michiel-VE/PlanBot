@@ -104,14 +104,16 @@ Bot.on('message', message =>{
             if(!args[1]) return message.reply(':x: Event not in list'), console.log(datumremove, eventname)
             var idint = parseInt(args[1]);
             if(idint <= events.length){
-                events.splice(events[args[1]], 1);
+                if (idint === events[idint].id){
+                    events.splice(events[args[1]], 1);
                 message.channel.send('Event: ' + eventname + ' on ' + args[1] + ' was deleted :white_check_mark:');
+                }
+                
             }else{
                 message.reply('No valid ID');
             }
             
             eventname = '';
-            id = 1;
             break;
     }
 }
