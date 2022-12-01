@@ -1,22 +1,25 @@
 {
-  "name": "planbot",
+  "name": "planningbot",
   "version": "1.0.0",
-  "description": "First bot",
+  "description": "A small bot to save your important tasks so you don't have to remember it. As used for a project for Web Server Programming",
   "main": "index.js",
   "scripts": {
-    "start": "index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Michiel-VE/PlanBot.git"
+    "url": "https://gitlab.labranet.jamk.fi/AC4908/planningbot.git"
   },
-  "author": "Ikke123HH",
+  "author": "Michiel Van Eynde",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Michiel-VE/PlanBot/issues"
-  },
-  "homepage": "https://github.com/Michiel-VE/PlanBot#readme",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "axios": "^1.1.3",
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
